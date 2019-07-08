@@ -26,9 +26,7 @@
                       router-link.navbar-link(
                         :to="`${link.url}`"
                       ) {{ link.title }}
-
-    .content-wrapper
-        router-view
+    router-view
 </template>
 
 <script>
@@ -38,6 +36,7 @@ export default {
       menuShow: false,
       linkMenu: [
         {title: 'Главная', url: '/'},
+        {title: 'Список', url: '/task'},
         {title: 'Вход', url: '/login'},
         {title: 'Регистрация', url: '/registration'}
       ]
