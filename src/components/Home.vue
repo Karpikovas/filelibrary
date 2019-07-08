@@ -12,7 +12,6 @@
         textarea(
           type="text"
           v-model="taskDescription"
-          @keyup.enter="newTask"
         )
         .option-list
           input.what-watch--radio(
@@ -133,22 +132,7 @@ export default {
 
       tagTitle: '',
       tagMenuShow: false,
-      tagsUsed: [],
-      tags: [
-        {
-          title: 'Мелодрама',
-          use: false
-        },
-        {
-          title: 'Комедия',
-          use: false
-        },
-        {
-          title: 'Приключения',
-          use: false
-        }
-      ]
-
+      tagsUsed: []
     }
   },
   methods: {
@@ -156,10 +140,11 @@ export default {
       if (this.tagTitle === '') {
         return
       }
-      this.tags.push({
+      const tag = {
         title: this.tagTitle,
-        used: false
-      })
+        use: false
+      }
+      this.$store.dispatch('newTag', tag)
     },
     newTask () {
       if (this.taskTitle === '') {
@@ -186,6 +171,9 @@ export default {
       this.taskTitle = ''
       this.taskDescription = ''
       this.tagsUsed = []
+      for (let i = 0; i < this.tags.length; i++) {
+        this.tags[i].use = false
+      }
     },
     addTagUsed (tag) {
       tag.use = !tag.use
@@ -204,6 +192,9 @@ export default {
     }
   },
   computed: {
+    tags () {
+      return this.$store.getters.tags
+    },
     filmTime () {
       let min = (this.filmHours * 60) + (this.filmMinutes * 1)
       return this.getHoursAndMinutes(min)
