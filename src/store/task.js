@@ -14,7 +14,7 @@ export default {
         'title': 'SOME 2',
         'description': 'It is smth 2',
         'whatWatch': 'Сериал',
-        'completed': false,
+        'completed': true,
         'editing': false
       }
     ]
@@ -26,12 +26,23 @@ export default {
   },
   actions: {
     newTask ({commit}, payload) {
+      payload.id = Math.random()
       commit('newTask', payload)
     }
   },
   getters: {
     tasks (state) {
       return state.tasks
+    },
+    taskCompleted (state) {
+      return state.tasks.filter(task => {
+        return task.completed
+      })
+    },
+    taskNoCompleted (state) {
+      return state.tasks.filter(task => {
+        return task.completed === false
+      })
     }
   }
 }
