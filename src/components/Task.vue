@@ -112,4 +112,22 @@ export default {
 .ui-label
   margin-right 8px
 
+.task-item__body
+  margin-bottom 20px
+
+.tag-list
+  margin-bottom 20px
+.task-item__foter
+  .buttons-list
+    text-align right
+
+.ui-tag__wrapper
+  margin-right 16px
+
+.buttons-list
+  .button
+    margin-right 12px
+    &:last-child
+      margin-right 0
+
 </style>

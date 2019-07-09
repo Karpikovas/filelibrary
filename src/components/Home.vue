@@ -105,7 +105,6 @@
             )
               span.tag-title {{ tag.title }}
               span.button-close
-        p {{ tagsUsed }}
         .button-list
             button.button.button--round.button-primary(
               @click="newTask"
